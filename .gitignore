@@ -143,9 +143,8 @@ dmypy.json
 # Local History for Visual Studio Code
 .history/
 
-# ignoring some data dirs
-data/input/ch3/archive
-data/input/ch3/flights
+# ignoring CSVs
+*.csv
 
 # ignore DS_Store for Mac OS
 .DS_Store
