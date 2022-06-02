@@ -6,4 +6,5 @@ jupyterlab==3.0.14
 notebook==6.3.0
 jupyterthemes==0.20.0
 pyyaml==5.4.1
-colored==1.4.3 
+colored==1.4.3
+randomname==0.1.5
