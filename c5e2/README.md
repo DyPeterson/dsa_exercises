@@ -1,30 +1,15 @@
-# Exercise #1: potato salad image
+# Exercise #1: potato salad docker-compose
 
-Create a docker image that prints the recipe for making potato salad.
+This exercise builds on top of your previous exercise from [episode 2](../ep2). In this exercise you will create a docker-compose with 2 services. The first service is a simple MariaDB container and the second container is a python script that read ingredients for a potato salad recipe and inserts them into the mariadb container.
 
-1. Create a `main.py` script that reads and prints the recipe using `data/potato_salad.yml`
-1. Use the pypi [colored](https://pypi.org/project/colored/) package to add colors to your recipe. ie: print each ingredient or step in a different color
-1. Create a Dockerfile for your image and include your files
-1. Create a default `CMD` for your image that runs your script by default
-1. Additional points: use the pypi [tabulate](https://pypi.org/project/tabulate/) package to print the nutritional facts in a table format
+1. Adapt your `main.py` that can insert our potato salad ingredients to mariadb either using Pandas or SQLAlchemy.
+1. The script needs to read the list of ingredients from our `data/potato_salad.yml` file
+1. Create a custom docker container for your script which takes the MariaDB connection parameters (host, user, pswd) as environment variables
+1. Create a docker compose which runs both containers. You must have your script to start correctly only after MariaDB is fully functional 
 
-# Exercise #2: random names
+> hint: either use the docker `wait-for-it.sh` script, or create a `HEALTHCHECK` for your mariadb container and use the `depends_on` tag.
 
-In this exercise you will crate a docker image that generates a bunch of random docker container names using the pypi [randomname](https://pypi.org/project/randomname/) package. This package generates docker-like container names with an adjective followed by a noun (ie: sleek-voxel). Read their documentation to get familiar with this package.
+### Extra points:
 
-1. Create a `main.py` script that generates N random names
-    - Have fun with combining using different adjective/noun combination
-1. Enhance your script to use python's `argparse` built-in module to accept a couple of parameters:
-    - `--num-rows`: for the number of names to generate
-    - `--output-file`: optional parameter to also write the names into a file
-1. Create a Dockerfile for your code including an `ENTRYPOINT` to run your python script and a `CMD` with a default 30 rows argument
-1. Run your container with different number of rows combination
-1. Run your container with a local directory attached as a volume and option to output the names into a file inside that volume
-
-> hint: refer to other code in this episode for an example of using `argparse`
-
-
-# Additional exercise (optional)
-
-Repeat the exercise above using the pypi [Faker](https://pypi.org/project/Faker/) package instead.
+1. Create another container that reads your ingredients table and prints them to the screen. This container must run after your loading container is done.
 
